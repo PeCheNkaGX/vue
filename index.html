@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Приложение Список Покупок</title>
+  <title>Приложение Список Дел</title>
   <link rel="stylesheet" href="main.css">
 </head>
 
@@ -12,13 +12,13 @@
     <div class="header">
       <h1>{{ header || 'Добро пожаловать' }}</h1>
       <button v-if="editing" @click="doEdit(false)" class="btn btn-cancel">Отмена</button>
-      <button v-else @click="doEdit(true)" class="btn btn-primry">Добавить товар</button>
+      <button v-else @click="doEdit(true)" class="btn btn-primry">Добавить задачу</button>
     </div>
     
     <div v-if="editing" class="add-item-form">
       <input 
         @keyup.enter="saveItem" 
-        type="text" v-model="newItem" placeholder = "Добавить товар">
+        type="text" v-model="newItem" placeholder = "Добавить задачу">
       <label>
         <input type="checkbox" v-model="newItemHighPriority">
         Высокий приоритет
@@ -26,10 +26,10 @@
       <button 
         @click="saveItem" 
         class="btn btn-primary">
-        Сохранить товар
+        Сохранить задачу
       </button>
     </div>
-    <p v-if="items.length === 0">Отличная работа! Вы купили все товары!</p>
+    <p v-if="items.length === 0">Отличная работа! Вы выполнили все задачи!</p>
     <ul>
       <li 
         v-for="item in reversedItems" 
@@ -47,14 +47,14 @@
     const shoppingListApp = Vue.createApp({
       data() {
         return {
-          header: 'Приложение Список Покупок',
+          header: 'Приложение Список Дел',
           editing:false,
           newItem: '',
           newItemHighPriority: false,
           items:[
-            {id: 1, label:'10 праздничных шляп', purchased: true, highPriority: false},
-            {id: 2, label:'2 настольные игры', purchased: true, highPriority: false},
-            {id: 3, label:'20 чашек', purchased: false, highPriority: true},
+            {id: 1, label:'Сделать зарядку', purchased: true, highPriority: false},
+            {id: 2, label:'Заплатить за интернет', purchased: true, highPriority: false},
+            {id: 3, label:'Подготовить отчет', purchased: false, highPriority: true},
           ]
         }
       },
